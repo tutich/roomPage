@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.intro{
+  background-image: url('/src/images/desktop-image-hero-1.jpg');
+}
