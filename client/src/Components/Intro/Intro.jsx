@@ -10,6 +10,8 @@ import imageOne from '../../images/desktop-image-hero-1.jpg';
 import imageTwo from '../../images/desktop-image-hero-2.jpg';
 import imageThree from '../../images/desktop-image-hero-3.jpg';
 
+import arrow from './../../images/icon-arrow.svg'
+
 const Data = [
   {
     id: 1,
@@ -40,26 +42,39 @@ const Intro = () => {
   return (
     <div className=''>
         <Navbar />
-        {/* <section className=''>
-          <img src={angleLeft} alt="" />
-          <img src={angleRight} alt="" />
-        </section> */}
-        <section>
+        
+        <section >
           {
             Data.map(item => (
-              <div key={item.id}>
-                 <picture>
-                  <source media='(min-width: 768px)'  srcSet={item.desktop}/>
-                  <img src={item.mobile} alt="" />
-                </picture>
+              <div key={item.id} className='flex flex-col lg:flex-row'>
+                 <div>
+                   <picture>
+                    <source media='(min-width: 768px)'  srcSet={item.desktop}/>
+                    <img src={item.mobile} alt="" className='w-full' />
+                   </picture>
 
-                <h1>{item.title}</h1>
-                <p>{item.desc}</p>
+                   <section className=''>
+                       <img src={angleLeft} alt="" className='' />
+                       <img src={angleRight} alt="" />
+                    </section>
+                 </div>
+
+                <div className='p-8 lg:p-12 w-[20%]'>
+                  <h1 className='text-2xl lg:text-5xl font-bold'>{item.title}</h1>
+                  <p className='text-xl lg:text-2xl text-gray-500 my-6'>{item.desc}</p>
+                  <div>
+                        <button className='flex items-center justify-between font-semibold gap-6 text-black-900'>
+                            SHOP NOW
+                          <img src={arrow} alt="" />
+                        </button>
+                  </div>
+                </div>
                
                
               </div>
             ))
           }
+          
         </section>
     </div>
   )
