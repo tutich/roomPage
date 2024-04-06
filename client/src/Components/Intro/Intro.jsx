@@ -1,10 +1,10 @@
-import React from 'react'
-import Navbar from '../Navbar/Navbar'
+import React from 'react';
 import angleLeft from '../../images/icon-angle-left.svg'
 import angleRight from '../../images/icon-angle-right.svg'
 import image1 from '../../images/mobile-image-hero-1.jpg';
 import image2 from '../../images/mobile-image-hero-2.jpg';
 import image3 from '../../images/mobile-image-hero-3.jpg';
+import Navbar from '../Navbar/Navbar'
 
 import imageOne from '../../images/desktop-image-hero-1.jpg';
 import imageTwo from '../../images/desktop-image-hero-2.jpg';
@@ -41,29 +41,31 @@ const Data = [
 const Intro = () => {
   return (
     <div className=''>
-        <Navbar />
+      
         
         <section >
           {
             Data.map(item => (
-              <div key={item.id} className='flex flex-col lg:flex-row'>
-                 <div>
-                   <picture>
-                    <source media='(min-width: 768px)'  srcSet={item.desktop}/>
+              <div key={item.id} className='grid grid-cols-1 lg:grid-cols-2 lg:items-center'>
+                 <div className='relative'>
+                   <picture className=''>
+                    <source media='(min-width: 768px)'  srcSet={item.desktop} className=''/>
                     <img src={item.mobile} alt="" className='w-full' />
                    </picture>
 
-                   <section className=''>
-                       <img src={angleLeft} alt="" className='' />
-                       <img src={angleRight} alt="" />
-                    </section>
+                   <div className=''>
+                       <ul className='absolute right-0 bottom-0 flex'>
+                         <li><button className='bg-black p-6 hover:bg-gray-800 transition-all duration-200'><img src={angleLeft} alt="" className='' /></button></li>
+                         <li><button className='bg-black p-6 hover:bg-gray-800 transition-all duration-200'><img src={angleRight} alt="" /></button></li>
+                       </ul>
+                    </div>
                  </div>
 
-                <div className='p-8 lg:p-12 w-[20%]'>
-                  <h1 className='text-2xl lg:text-5xl font-bold'>{item.title}</h1>
+                <div className='p-8 lg:p-12  text-left '>
+                  <h1 className='text-4xl lg:text-5xl font-bold'>{item.title}</h1>
                   <p className='text-xl lg:text-2xl text-gray-500 my-6'>{item.desc}</p>
                   <div>
-                        <button className='flex items-center justify-between font-semibold gap-6 text-black-900'>
+                        <button className='flex items-center text-xl  font-semibold gap-6 text-black-900 tracking-widest hover:opacity-60'>
                             SHOP NOW
                           <img src={arrow} alt="" />
                         </button>
