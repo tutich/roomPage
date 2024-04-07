@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import angleLeft from '../../images/icon-angle-left.svg'
 import angleRight from '../../images/icon-angle-right.svg'
 import image1 from '../../images/mobile-image-hero-1.jpg';
@@ -39,24 +40,38 @@ const Data = [
 ]
 
 const Intro = () => {
+
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
+
+  const nextItem = () => {
+    setCurrentItemIndex((prevIndex) => (prevIndex + 1) % Data.length);
+  };
+
+  const prevItem = () => {
+    setCurrentItemIndex((prevIndex) => (prevIndex - 1 + Data.length) % Data.length);
+  };
+
+  
+
+
   return (
     <div className=''>
       
         
         <section >
           {
-            Data.map(item => (
-              <div key={item.id} className='grid grid-cols-1 lg:grid-cols-2 lg:items-center'>
-                 <div className='relative'>
+            Data.map((item, index) => (
+              <div key={item.id} className={`grid grid-cols-1 lg:grid-cols-2 lg:items-center ${index === currentItemIndex ? '' : 'hidden'}`}>
+                <div className='relative'>
                    <picture className=''>
                     <source media='(min-width: 768px)'  srcSet={item.desktop} className=''/>
                     <img src={item.mobile} alt="" className='w-full' />
                    </picture>
 
                    <div className=''>
-                       <ul className='absolute right-0 bottom-0 flex'>
-                         <li><button className='bg-black p-6 hover:bg-gray-800 transition-all duration-200'><img src={angleLeft} alt="" className='' /></button></li>
-                         <li><button className='bg-black p-6 hover:bg-gray-800 transition-all duration-200'><img src={angleRight} alt="" /></button></li>
+                       <ul className='absolute right-0 bottom-0 flex lg:-right-36 lg:p-0.5  '>
+                         <li><button className='bg-black p-6 hover:bg-gray-800 transition-all duration-200 lg:p-7' onClick={prevItem}><img src={angleLeft} alt="" className='' /></button></li>
+                         <li><button className='bg-black p-6 hover:bg-gray-800 transition-all duration-200 lg:p-7' onClick={nextItem}><img src={angleRight} alt="" /></button></li>
                        </ul>
                     </div>
                  </div>
